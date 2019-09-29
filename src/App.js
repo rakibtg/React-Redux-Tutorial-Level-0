@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import { connect } from 'react-redux'
+
+import Header from './components/Header'
+import Welcome from './components/Welcome'
+import NewPost from './components/NewPost'
+import Posts from './components/Posts'
+
+class App extends React.Component {
+
+  renderActivePage () {
+    const { activeMenu } = this.props
+    if( activeMenu === 'welcome' ) {
+      return <Welcome />
+    } else if ( activeMenu === 'newpost' ) {
+      return <NewPost />
+    } else if ( activeMenu === 'allposts' ) {
+      return <Posts />
+    }
+  }
+
+  render () {
+    return <div className='App-header'>
+      <Header />
+      {this.renderActivePage()}
     </div>
-  );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    activeMenu: state.header.activeMenuName
+  }
+}
+
+export default connect(mapStateToProps, null)(App)

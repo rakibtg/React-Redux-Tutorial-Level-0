@@ -1,3 +1,6 @@
+# React Redux Tutorial Level 0
+YouTube Video Link: https://youtu.be/kothp4eJfqg
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
